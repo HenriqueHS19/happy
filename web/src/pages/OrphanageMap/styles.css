@@ -1,0 +1,77 @@
+#page-map {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: row;
+
+    position: relative;
+}
+
+#page-map .side-bar {
+    max-width: 440px;
+    height: 100vh;
+    background: linear-gradient(329.54deg, #29B6D1 0%, #00C7C7 100%);
+    padding: 80px;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#page-map .side-bar img {
+    width: 64;
+}
+
+#page-map .side-bar h2 {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 42px;
+    margin-top: 64px;
+}
+
+#page-map .side-bar p {
+    font-size: 18px;
+    line-height: 28px;
+    margin-top: 24px;
+}
+
+#page-map .side-bar .location {
+    display: flex;
+    flex-direction: column;
+}
+
+#page-map .side-bar .location strong {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+#page-map .side-bar .location p {
+    margin-top: 10px;
+}
+
+#page-map .leaflet-container {
+    z-index: 5;
+}
+
+#page-map .btnOrphanage {
+    width: 64px;
+    height: 64px;
+    background: #15C3D6;
+    border-radius: 20px;
+    transition: background-color .3s;
+    z-index: 10;
+
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#page-map .btnOrphanage:hover {
+    background: #17D6EB;
+}
