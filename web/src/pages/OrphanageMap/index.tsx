@@ -37,7 +37,7 @@ const OrphanageMap: React.FC = function () {
                 />
             </Map>
 
-            <Link to="" className="btnOrphanage">
+            <Link to="/register-orphanage" className="btnOrphanage">
                 <FiPlus size={32} color="#fff" />
             </Link>
         </div>
