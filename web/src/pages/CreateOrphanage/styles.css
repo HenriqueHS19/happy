@@ -1,0 +1,221 @@
+#page-register {
+    max-width: 100%;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: row;
+}
+
+#page-register .content {
+    flex: 1;
+    padding: 40px 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#page-register .content .form {
+    width: 700px;
+    background: #fff;
+    border: 1px solid #D3E2E5;
+    border-radius: 10px;
+    padding: 64px 80px;
+    margin-top: 24px;
+}
+
+#page-register .content .form fieldset {
+    width: 100%;
+    border: 0;
+}
+
+#page-register .content .form fieldset legend {
+    width: 100%;
+    font-size: 32px;
+    line-height: 34px;
+    color: #4D6F80;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #D3E2E5;
+    margin-bottom: 24px;
+}
+#page-register .content .form fieldset + fieldset {
+    margin-top: 40px;
+}
+
+#page-register .content .form .map-container {
+    background: #F5F8FA;
+    border-radius: 20px;
+    border: 1px solid #DDE3F0;
+    margin-bottom: 24px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#page-register .content .form .map-container .map {
+    border-radius: 20px 20px 0px 0px;
+}
+
+#page-register .content .form .map-container p {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0089A5;
+    text-align: center;
+    border-top: 1px solid #DDE3F0;
+
+    padding: 24px 0;
+}
+
+#page-register .content .form fieldset .image-block {
+    width: 100%;
+    margin-bottom: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#page-register .content .form fieldset .image-block span {
+    font-size: 16px;
+    color: #8FA7B3;
+    margin: 0;
+}
+
+#page-register .content .form fieldset .image-block .images-container {
+    width: 100%;
+    height: 96px;
+    margin-top: 16px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#page-register .content .form fieldset .image-block .images-container .image {
+    width: 96px;
+    height: 96px;
+    border: 1px solid #D3E2E5;
+    border-radius: 20px;
+
+    position: relative;
+}
+#page-register .content .form fieldset .image-block .images-container .image + .image {
+    margin-left: 16px;
+}
+#page-register .content .form fieldset .image-block .images-container .image + label {
+    margin-left: 16px;
+}
+
+#page-register .content .form fieldset .image-block .images-container .image button {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 0 20px 0 20px;
+    margin: 0;
+    outline: 0;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#page-register .content .form fieldset .image-block .images-container .image img {
+    width: 100%;
+    height: 96px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+#page-register .content .form fieldset .image-block label.new-image {
+    width: 96px;
+    height: 96px;
+    background: #F5F8FA;
+    border: 1px dashed #D3E2E5;
+    border-radius: 20px;
+    color: #5C8599;
+    cursor: pointer;
+    outline: none;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#page-register .content .form fieldset .image-block .images-container input[type="file"] {
+    display: none;
+}
+
+#page-register .content .form fieldset .button-block {
+    width: 100%;
+    margin-top: 24px;
+    margin-bottom: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#page-register .content .form fieldset .button-block span {
+    font-size: 17px;
+    color: #8FA7B3;
+}
+
+#page-register .content .form fieldset .button-block .button-container {
+    width: 100%;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+}
+
+#page-register .content .form fieldset .button-block .button-container button {
+    height: 64px;
+    background: #F5F8FA;
+    border: 1px solid #D3E2E5;
+    color: #5C8599;
+    cursor: pointer;
+    outline: none;
+}
+/* Variations of color for buttons  */
+#page-register .content .form fieldset .button-block .button-container button.yes {
+    background: #EDFFF6;
+    border-color: #A1E9C5;
+    color: #37C77F;
+}
+#page-register .content .form fieldset .button-block .button-container button.no {
+    background: #FFE4EE;
+    border-color: #FF999D;
+    color: #FF669D;
+}
+/* border variations for button  */
+#page-register .content .form fieldset .button-block .button-container button:first-child {
+    border-radius: 20px 0px 0px 20px;
+}
+#page-register .content .form fieldset .button-block .button-container button:last-child {
+    border-radius: 0px 20px 20px 0px;
+}
+
+
+#page-register .content .form button {
+    width: 100%;
+    height: 64px;
+    background: #37C77F;
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    border: 0;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color .3s;
+    outline: false;
+}
+#page-register .content .form button:hover {
+    background: #3EE08F;
+}

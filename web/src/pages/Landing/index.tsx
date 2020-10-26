@@ -23,7 +23,7 @@ const Landing: React.FC = function () {
                     <span> São Paulo </span>
                 </div>
 
-                <Link to="/app">
+                <Link to="/orphanages">
                     <FiArrowRight size={26} color="rgba(0, 0, 0, 0.6)" />
                 </Link>
 

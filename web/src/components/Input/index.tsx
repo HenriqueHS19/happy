@@ -1,4 +1,5 @@
-import React, { InputHTMLAttributes } from 'react';
+import React, { useEffect, useRef, InputHTMLAttributes } from 'react';
+import { useField } from '@unform/core';
 
 import './styles.css';
 
@@ -8,10 +9,21 @@ interface IInput extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input: React.FC<IInput> = function ({ name, label, ...rest }) {
+    const inputRef = useRef(null);
+    const { fieldName, defaultValue, registerField } = useField(name);
+
+    useEffect(function () {
+        registerField({
+            name: fieldName,
+            ref: inputRef.current,
+            path: 'value',
+        });
+    }, [fieldName, registerField])
+
     return (
         <div className="input-block">
-            <span> {label} </span>
-            <input type="text" {...rest} />
+            <label htmlFor={name}> {label} </label>
+            <input ref={inputRef} defaultValue={defaultValue} type="text" autoComplete="off" {...rest} />
         </div>
     );
 }

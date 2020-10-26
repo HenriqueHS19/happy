@@ -6,6 +6,8 @@ import conn from '../database/connection';
 interface IOrphanage {
     id: number;
     name: string;
+    latitude: number;
+    longitude: number;
     about: string;
     instructions: string;
     opening_hours: string;
@@ -29,13 +31,17 @@ class OrphanagesController {
 
         let orphanagesList: IOrphanage[] = [];
 
+        // alter path of images
+        images.map(function (image, index) {
+            images[index].path = uploadPath + image.path;
+        });
+
         orphanages.map(function (orphanage: IOrphanage) {
 
             // separating the images according to the id
             let imgs: IImages[] = [];
             images.map(function (image) {
                 if (image.orphanage_id = orphanage.id) {
-                    image.path = uploadPath + image.path;
                     imgs.push(image);
                 }
             });
@@ -43,6 +49,8 @@ class OrphanagesController {
             orphanagesList.push({
                 id: orphanage.id,
                 name: orphanage.name,
+                latitude: orphanage.latitude,
+                longitude: orphanage.longitude,
                 about: orphanage.about,
                 instructions: orphanage.instructions,
                 opening_hours: orphanage.opening_hours,
@@ -63,14 +71,16 @@ class OrphanagesController {
         const images: IImages[] = await conn('images').select('*')
             .where({ orphanage_id: id });
 
-        // alter path image
-        images.map(function (image: IImages, index) {
+        // alter path of images
+        images.map(function (image, index) {
             images[index].path = uploadPath + image.path;
         });
 
         const orph: IOrphanage = {
             id: orphanage[0].id,
             name: orphanage[0].name,
+            latitude: orphanage[0].latitude,
+            longitude: orphanage[0].longitude,
             about: orphanage[0].about,
             instructions: orphanage[0].instructions,
             opening_hours: orphanage[0].opening_hours,
@@ -90,29 +100,15 @@ class OrphanagesController {
 
         try {
 
-            const data = {
+            const orphanage = await trx('orphanages').insert({
                 name,
                 latitude,
                 longitude,
                 about,
                 instructions,
                 opening_hours,
-                open_on_weekends,
-            }
-
-            // const schema = Yup.object().shape({
-            //     name: Yup.string().required(),
-            //     latitude: Yup.number().required(),
-            //     longitude: Yup.number().required(),
-            //     about: Yup.string().required(),
-            //     instructions: Yup.string().required(),
-            //     opening_hours: Yup.string().required(),
-            //     open_on_weekends: Yup.boolean().required(),
-            // });
-
-            // await schema.validate(data, { abortEarly: true });
-
-            const orphanage = await trx('orphanages').insert(data);
+                open_on_weekends: open_on_weekends === 'true',
+            });
 
             let images: IImages[] = [];
 

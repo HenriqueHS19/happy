@@ -1,0 +1,32 @@
+aside {
+    width: 96px;
+    height: 100vh;
+    background: linear-gradient(329.54deg, #29B6D1 0%, #00C7C7 100%);
+    padding: 24px;
+    position: fixed;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+aside img {
+    width: 48px;
+}
+
+aside a {
+    width: 48px;
+    height: 48px;
+    background: #12AFCB;
+    border-radius: 20px;
+    transition: background-color .3s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+aside a:hover {
+    background: #17D6EB;
+}
+
