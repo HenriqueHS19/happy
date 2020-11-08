@@ -8,7 +8,7 @@ interface IInput extends InputHTMLAttributes<HTMLInputElement> {
     label: string;
 }
 
-const Input: React.FC<IInput> = function ({ name, label, ...rest }) {
+const Input: React.FC<IInput> = function ({ name, label, children, ...rest }) {
     const inputRef = useRef(null);
     const { fieldName, defaultValue, registerField } = useField(name);
 
@@ -23,7 +23,15 @@ const Input: React.FC<IInput> = function ({ name, label, ...rest }) {
     return (
         <div className="input-block">
             <label htmlFor={name}> {label} </label>
-            <input ref={inputRef} defaultValue={defaultValue} type="text" autoComplete="off" {...rest} />
+            {children ?
+                <div className="container-input">
+                    <input ref={inputRef} defaultValue={defaultValue} type="text" autoComplete="off" {...rest} />
+                    { children }
+                </div>
+                :
+                <input ref={inputRef} defaultValue={defaultValue} type="text" autoComplete="off" {...rest} />
+            }
+
         </div>
     );
 }

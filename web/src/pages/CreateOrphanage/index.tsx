@@ -76,9 +76,7 @@ const OrphanageRegister: React.FC = function () {
 
         await api.post('/orphanages', formData);
 
-        alert('Cadatro realizado porra!');
-
-        history.push('/orphanages');
+        history.push('/orphange/create/success');
     }
 
     return (

@@ -16,12 +16,58 @@
     position: relative;
 
     background: url('../../images/landing.svg') no-repeat 80% center;
-    /* image no-repeat position -> x position -> y */
+    /* image no-repeat position = x position = y */
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+}
+
+#landing .content header {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#landing .content header .container-logo {
+    display: flex;
+    align-items: center;
+}
+
+#landing .content header .container-logo .location {
+    font-size: 20px;
+    margin-left: 80px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#landing .content header .container-logo .location strong {
+    font-weight: 800;
+}
+
+#landing .content header a {
+    width: 220px;
+    height: 56px;
+    background: #12D4E0;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .3s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#landing .content header a:hover {
+    background: #96FEFF;
+    color: #15C3D6;
 }
 
 #landing .content main {
@@ -40,29 +86,12 @@
     margin-top: 40px;
 }
 
-#landing .content .location {
-    position: absolute;
-    top: 0;
-    right: 0;
-
-    font-size: 24px;
-    line-height: 34px;
-    text-align: right;
-
-    display: flex;
-    flex-direction: column;
-}
-
-#landing .content .location strong {
-    font-weight: 800;
-}
-
-#landing .content a {
+#landing .content .btnApp {
     width: 80px;
     height: 80px;
     background: #FFD666;
     border-radius: 25px;
-    transition: background-color .3s;
+    transition: background .3s;
 
     display: flex;
     justify-content: center;
@@ -72,6 +101,6 @@
     bottom: 0;
     right: 0;
 }
-#landing .content a:hover {
+#landing .content .btnApp:hover {
     background: #96FEFF;
 }

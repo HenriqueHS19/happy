@@ -12,6 +12,13 @@
     margin-bottom: 10px;
 }
 
+.input-block .container-input {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
 .input-block input {
     width: 100%;
     height: 64px;

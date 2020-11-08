@@ -1,0 +1,122 @@
+#login-page {
+    width: 100vw;
+    height: 100vh;
+}
+
+#login-page .content {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+}
+
+#login-page .content .container-logo {
+    width: 1400px;
+    background: #29B6D1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-page .content .container-logo img {
+    width: 240px;
+    object-fit: cover;
+}
+
+#login-page .content .container-logo .location {
+    font-size: 24px;
+    margin-top: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-page .content .container-logo .location strong {
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+#login-page .content .container-form {
+    flex: 1;
+    background-color: #fff;
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-page .content .container-form form {
+    width: 360px;
+}
+
+#login-page .content .container-form form h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #5C8599;
+    margin-bottom: 24px;
+}
+
+#login-page .content .container-form form p {
+    width: 300px;
+    font-size: 18px;
+    line-height: 28px;
+    color: #5C8599;
+    margin-bottom: 40px;
+}
+
+#login-page .content .container-form .form-recovery .input-block .container-input input {
+    border-width: 1px 0 1px 1px;
+    border-radius: 20px 0 0 20px;
+}
+
+#login-page .content .container-form .form-recovery .input-block .container-input button {
+    width: 72px;
+    height: 64px;
+    background: #F5F8FA;
+    border: 1px solid #D3E2E5;
+    border-width: 1px 1px 1px 0;
+    border-radius: 0 20px 20px 0;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-page .content .container-form form button {
+    width: 100%;
+    height: 64px;
+    background: #37C77F;
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    margin-top: 24px;
+    cursor: pointer;
+    transition: background .3s;
+    outline: none;
+}
+#login-page .content .container-form form button:hover {
+    background: #3EE08F;
+}
+
+#login-page .content .container-form .btnBack {
+    width: 48px;
+    height: 48px;
+    background: #EBF2F5;
+    border-radius: 20px;
+
+    position: absolute;
+    top: 40px;
+    right: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
