@@ -33,5 +33,7 @@
     transition: border .3s;
 }
 .input-block input:focus {
+    border-width: 3px;
     border-color: #A1E9C5;
+    /* border-color: #37C77F; */
 }

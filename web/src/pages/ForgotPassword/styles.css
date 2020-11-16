@@ -73,6 +73,13 @@
     border-width: 1px 0 1px 1px;
     border-radius: 20px 0 0 20px;
 }
+#login-page .content .container-form .form-recovery .input-block .container-input input:focus {
+    border-width: 3px 0 3px 3px;
+}
+#login-page .content .container-form .form-recovery .input-block .container-input input:focus ~ button {
+    border-width: 3px 3px 3px 0;
+    border-color: #A1E9C5;
+}
 
 #login-page .content .container-form .form-recovery .input-block .container-input button {
     width: 72px;
@@ -82,6 +89,7 @@
     border-width: 1px 1px 1px 0;
     border-radius: 0 20px 20px 0;
     margin: 0;
+    transition: border-color .3s;
 
     display: flex;
     justify-content: center;

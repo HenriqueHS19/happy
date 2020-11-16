@@ -1,0 +1,21 @@
+#header-app {
+    width: 100%;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #D3E2E5;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header-app h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #4D6F80;
+}
+
+#header-app p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #8FA7B3;
+}

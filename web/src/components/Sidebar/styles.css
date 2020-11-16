@@ -15,11 +15,24 @@ aside img {
     width: 48px;
 }
 
+aside .container-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+aside .container-buttons a.active {
+    background: #FFD666;
+}
+
+aside .container-buttons a.active svg {
+    color: #0089A5;
+}
+
 aside a {
     width: 48px;
     height: 48px;
     background: #12AFCB;
-    border-radius: 20px;
+    border-radius: 16px;
     transition: background-color .3s;
 
     display: flex;
@@ -28,5 +41,12 @@ aside a {
 }
 aside a:hover {
     background: #17D6EB;
+}
+aside a + a {
+    margin-top: 10px;
+}
+
+aside a svg {
+    color: #fff;
 }
 

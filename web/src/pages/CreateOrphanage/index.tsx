@@ -82,7 +82,7 @@ const OrphanageRegister: React.FC = function () {
     return (
         <div id="page-register">
 
-            <Sidebar />
+            <Sidebar isRestricted={false} />
 
             <div className="content">
 

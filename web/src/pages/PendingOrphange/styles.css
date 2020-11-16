@@ -1,0 +1,17 @@
+#pending-orphanage {
+    width: 100vw;
+    height: 100vh;
+}
+
+#pending-orphanage .content {
+    width: 100%;
+
+    display: flex;
+}
+
+#pending-orphanage .content main {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 40px 0;
+}

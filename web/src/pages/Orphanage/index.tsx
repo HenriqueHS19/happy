@@ -38,7 +38,7 @@ const Orphanage: React.FC = function () {
 
     return (
         <div id="page-orphanage">
-            <Sidebar />
+            <Sidebar isRestricted={false} />
 
             <main>
 
