@@ -82,7 +82,7 @@ const OrphanageRegister: React.FC = function () {
     return (
         <div id="page-register">
 
-            <Sidebar isRestricted={false} />
+            <Sidebar isRestricted={false} linkPath="/orphanages" />
 
             <div className="content">
 

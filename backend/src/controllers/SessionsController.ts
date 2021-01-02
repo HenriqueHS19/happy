@@ -13,9 +13,9 @@ class SessionsController {
     async show(req: Request, res: Response) {
         const { email, password } = req.body;
 
-        const trx = await conn.transaction();
-
         try {
+
+            const trx = await conn.transaction();
 
             const user = await trx<IUser>('users').select('*')
                 .where('email', email);

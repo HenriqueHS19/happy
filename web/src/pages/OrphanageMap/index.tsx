@@ -18,7 +18,18 @@ const OrphanageMap: React.FC = function () {
     const getOrphanages = useCallback(async function () {
         const response = await api.get('/orphanages');
 
-        setOrphanages(response.data);
+        let orphanagesNotPending: IOrphanage[] = [];
+
+        response.data.forEach(function (orphanage: IOrphanage) {
+            if (!orphanage.pending) {
+                orphanagesNotPending.push(orphanage);
+            }
+        });
+
+        if (orphanagesNotPending) {
+            setOrphanages(orphanagesNotPending);
+        }
+
     }, []);
 
     useEffect(function () {
@@ -53,7 +64,7 @@ const OrphanageMap: React.FC = function () {
 
                 {orphanages.map(function (orphanage) {
                     return (
-                        <Marker position={[orphanage.latitude, orphanage.longitude]} icon={mapIcon} key={orphanage.id}>
+                        <Marker position={[orphanage?.latitude, orphanage?.longitude]} icon={mapIcon} key={orphanage.id}>
                             <Popup closeButton={false} minWidth={270} maxWidth={270} className="map-popup">
                                 {orphanage.name}
 

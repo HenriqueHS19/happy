@@ -20,7 +20,7 @@ class UsersController {
             const isUser = await trx<IUser>('users').select('*')
                 .where('email', email);
 
-            if (isUser) {
+            if (isUser.length > 0) {
                 return res.status(400).json({ message: 'Email already registered' });
             }
 

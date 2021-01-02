@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FiAlertCircle, FiArrowLeft, FiMapPin, FiPower } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
@@ -8,13 +8,11 @@ import './styles.css';
 
 interface ISideBar {
     isRestricted: boolean;
+    linkPath: string;
+    indexActive?: number;
 }
 
-const Sidebar: React.FC<ISideBar> = function ({ isRestricted }) {
-
-    const [isActive, setIsActive] = useState('dashboard');
-
-    console.log(isActive);
+const Sidebar: React.FC<ISideBar> = function ({ isRestricted, linkPath, indexActive }) {
 
     return (
         <aside>
@@ -23,25 +21,21 @@ const Sidebar: React.FC<ISideBar> = function ({ isRestricted }) {
             { isRestricted ?
                 <>
                     <div className="container-buttons">
-                        <Link to="/dashboard" className={isActive === 'dashboard' ? 'active': ''} onClick={function () {
-                            setIsActive('dashboard');
-                        }}>
+                        <Link to="/dashboard" className={indexActive === 0 ? 'active': ''} >
                             <FiMapPin size={24} />
                         </Link>
 
-                        <Link to="/pending-registration" className={isActive === 'pending' ? 'active': ''} onClick={function () {
-                            setIsActive('pending');
-                        }}>
+                        <Link to="/pending/orphanages" className={indexActive === 1 ? 'active': ''} >
                             <FiAlertCircle size={24} />
                         </Link>
                     </div>
 
-                    <Link to="/">
+                    <Link to={linkPath}>
                         <FiPower size={24} />
                     </Link>
                 </>
                 :
-                <Link to="/orphanages">
+                <Link to={linkPath}>
                     <FiArrowLeft size={24} />
                 </Link>
             }

@@ -7,6 +7,7 @@ interface IOrphanage {
     instructions: string;
     opening_hours: string;
     open_on_weekends: boolean;
+    pending?: boolean;
     images: [ { id: number; path: string; }];
 };
 

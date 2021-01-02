@@ -24,73 +24,6 @@ const uploadPath = 'http://localhost:3333/uploads/';
 
 class OrphanagesController {
 
-    async index(req: Request, res: Response) {
-        const orphanages = await conn('orphanages').select('*');
-
-        const images: IImages[] = await conn('images').select('*');
-
-        let orphanagesList: IOrphanage[] = [];
-
-        // alter path of images
-        images.map(function (image, index) {
-            images[index].path = uploadPath + image.path;
-        });
-
-        orphanages.map(function (orphanage: IOrphanage) {
-
-            // separating the images according to the id
-            let imgs: IImages[] = [];
-            images.map(function (image) {
-                if (image.orphanage_id = orphanage.id) {
-                    imgs.push(image);
-                }
-            });
-
-            orphanagesList.push({
-                id: orphanage.id,
-                name: orphanage.name,
-                latitude: orphanage.latitude,
-                longitude: orphanage.longitude,
-                about: orphanage.about,
-                instructions: orphanage.instructions,
-                opening_hours: orphanage.opening_hours,
-                open_on_weekends: orphanage.open_on_weekends,
-                images: imgs,
-            });
-        });
-
-        return res.status(200).json(orphanagesList);
-    }
-
-    async show(req: Request, res: Response) {
-        const { id } = req.params;
-
-        const orphanage = await conn('orphanages').select('*')
-            .where({ id });
-
-        const images: IImages[] = await conn('images').select('*')
-            .where({ orphanage_id: id });
-
-        // alter path of images
-        images.map(function (image, index) {
-            images[index].path = uploadPath + image.path;
-        });
-
-        const orph: IOrphanage = {
-            id: orphanage[0].id,
-            name: orphanage[0].name,
-            latitude: orphanage[0].latitude,
-            longitude: orphanage[0].longitude,
-            about: orphanage[0].about,
-            instructions: orphanage[0].instructions,
-            opening_hours: orphanage[0].opening_hours,
-            open_on_weekends: orphanage[0].open_on_weekends,
-            images,
-        }
-
-        return res.status(200).json(orph);
-    }
-
     async create(req: Request, res: Response) {
         const { name, latitude, longitude, about, instructions, opening_hours, open_on_weekends } = req.body;
 
@@ -131,6 +64,76 @@ class OrphanagesController {
             return res.status(400).json({
                 error: 'Unexpected error while creating new orphanage',
             });
+        }
+    }
+
+    async index(req: Request, res: Response) {
+        const trx = await conn.transaction();
+
+        try {
+            const orphanages = await trx('orphanages').select('*');
+
+            await trx.commit();
+
+            return res.status(200).json(orphanages);
+        } catch (error) {
+            console.log(error);
+            await trx.rollback();
+            return res.status(400).json({ message: 'Unexpected error'});
+        }
+
+    }
+
+    async show(req: Request, res: Response) {
+        const { id } = req.params;
+
+        const orphanage = await conn('orphanages').select('*')
+            .where({ id });
+
+        const images: IImages[] = await conn('images').select('*')
+            .where({ orphanage_id: id });
+
+        // alter path of images
+        images.map(function (image, index) {
+            images[index].path = uploadPath + image.path;
+        });
+
+        const orph: IOrphanage = {
+            id: orphanage[0].id,
+            name: orphanage[0].name,
+            latitude: orphanage[0].latitude,
+            longitude: orphanage[0].longitude,
+            about: orphanage[0].about,
+            instructions: orphanage[0].instructions,
+            opening_hours: orphanage[0].opening_hours,
+            open_on_weekends: orphanage[0].open_on_weekends,
+            images,
+        }
+
+        return res.status(200).json(orph);
+    }
+
+    async delete(req: Request, res: Response) {
+        const { id } = req.params;
+
+        const trx = await conn.transaction();
+
+        try {
+
+            await trx('images').delete()
+                .where({ orphanage_id: id });
+
+            await trx('orphanages').delete()
+                .where({ id });
+
+            await trx.commit();
+
+            return res.status(200).send();
+
+        } catch (error) {
+            console.log(error);
+            await trx.rollback();
+            return res.status(400).json({ message: 'Unexpected error while deleting orphanage' });
         }
     }
 }

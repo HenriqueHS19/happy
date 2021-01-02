@@ -4,13 +4,13 @@ import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 import OrphanageContainer from '../../components/OrphanageContainer';
 
-import api from '../../services/api';
-
 import IOrphanage from '../../interfaces/IOrphanage';
+
+import api from '../../services/api';
 
 import './styles.css';
 
-const Dashboard: React.FC = function () {
+const PendingOrphanage: React.FC = function () {
 
     const [orphanages, setOrphanages] = useState<IOrphanage[]>([]);
 
@@ -18,16 +18,16 @@ const Dashboard: React.FC = function () {
         async function getOrphanages() {
             const response = await api.get('/orphanages');
 
-            let orphanagesNotPending: IOrphanage[] = [];
+            let orphanagesPending: IOrphanage[] = [];
 
             response.data.forEach(function (orphanage: IOrphanage) {
-                if (!orphanage.pending) {
-                    orphanagesNotPending.push(orphanage);
+                if (orphanage.pending) {
+                    orphanagesPending.push(orphanage);
                 }
             });
 
-            if (orphanagesNotPending) {
-                setOrphanages(orphanagesNotPending);
+            if (orphanagesPending) {
+                setOrphanages(orphanagesPending);
             }
         }
 
@@ -35,14 +35,14 @@ const Dashboard: React.FC = function () {
     }, []);
 
     return (
-        <div id="dashboard">
+        <div id="pending-orphanage">
             <div className="content">
-                <Sidebar isRestricted linkPath="/" indexActive = {0} />
+                <Sidebar isRestricted linkPath="/" indexActive={1} />
 
                 <main>
-                    <Header title="Orfanatos cadastrados" quantOrphanages={orphanages.length} />
+                    <Header title="Cadastros pendentes" quantOrphanages={orphanages.length} />
 
-                    <OrphanageContainer orphanages={orphanages} isPending={false} />
+                    <OrphanageContainer orphanages={orphanages} isPending />
 
                 </main>
             </div>
@@ -50,4 +50,4 @@ const Dashboard: React.FC = function () {
     );
 }
 
-export default Dashboard;
+export default PendingOrphanage;

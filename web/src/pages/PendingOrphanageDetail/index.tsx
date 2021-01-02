@@ -1,14 +1,12 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { FiClock, FiAlertCircle } from 'react-icons/fi';
+import { FiClock, FiAlertCircle, FiXCircle, FiCheck } from 'react-icons/fi';
 import { Map, TileLayer, Marker } from 'react-leaflet';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import Sidebar from '../../components/Sidebar';
 import mapIcon from '../../utils/mapIcon';
 import api from '../../services/api';
 import IOrphanage from '../../interfaces/IOrphanage';
-
-import whatsappIcon from '../../images/whatsapp.svg';
 
 import './styles.css';
 
@@ -16,10 +14,12 @@ interface IParams {
     id: string;
 }
 
-const Orphanage: React.FC = function () {
+const PendingOrphanageDetail: React.FC = function () {
 
     const [orphanage, setOrphanage] = useState<IOrphanage>();
     const [imageIndex, setImageIndex] = useState(0);
+
+    const history = useHistory();
 
     const params: IParams = useParams();
 
@@ -36,9 +36,25 @@ const Orphanage: React.FC = function () {
         getOrphanage();
     }, [getOrphanage]);
 
+    const handleAccepted = useCallback(async function () {
+        const id = Number(params.id);
+
+        await api.put(`/pending/orphanage/${id}`);
+
+        history.push('/pending/orphanages');
+    }, [params.id, history]);
+
+    const handleRecuse = useCallback(async function () {
+        const id = Number(params.id);
+
+        await api.delete(`/orphanages/${id}`);
+
+        history.push('/pending/orphanages');
+    }, [params.id, history]);
+
     return (
         <div id="page-orphanage">
-            <Sidebar isRestricted={false} linkPath="/orphanages" />
+            <Sidebar isRestricted={false} linkPath="/pending/orphanages" />
 
             <main>
 
@@ -53,7 +69,7 @@ const Orphanage: React.FC = function () {
                                     <button
                                         key={image.id}
                                         type="button"
-                                        className={imageIndex === index ? 'active': ''}
+                                        className={imageIndex === index ? 'active' : ''}
                                         onClick={function () {
                                             setImageIndex(index);
                                         }}
@@ -120,16 +136,24 @@ const Orphanage: React.FC = function () {
                                 </div>)
                             }
                         </div>
-
-                        <button>
-                            <img src={whatsappIcon} alt="Whatsapp" />
-                            Entrar em contato
-                        </button>
                     </div>
+
+                    <footer>
+                        <button className="recuse" onClick= { handleRecuse }>
+                            <FiXCircle size={24} color="#fff" />
+                            Recusar
+                        </button>
+
+                        <button className="accepted" onClick = { handleAccepted }>
+                            <FiCheck size={24} color="#fff" />
+                            Aceitar
+                        </button>
+                    </footer>
+
                 </div>
             </main>
         </div>
     )
 }
 
-export default Orphanage;
+export default PendingOrphanageDetail;

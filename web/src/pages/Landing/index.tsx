@@ -2,11 +2,15 @@ import React from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
+import getLocation from '../../utils/getLocation';
+
 import logo from '../../images/logo.svg';
 
 import './styles.css';
 
 const Landing: React.FC = function () {
+
+    getLocation();
 
     return (
         <div id="landing">
